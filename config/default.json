@@ -1,0 +1,8 @@
+{
+  "port": 8080,
+  "jwtKey": "history-map",
+  "refreshKey": "history-map-refresh",
+  "expiresInToken": 900,
+  "expiresInRefreshToken": 604800,
+  "host": "0.0.0.0"
+}

@@ -1,0 +1,343 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Map App API",
+    "description": "Map App Restful API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "127.0.0.1:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/map": {
+      "get": {
+        "summary": "get all map coordinates",
+        "tags": [
+          "Map"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/map/generate/random": {
+      "get": {
+        "summary": "create fake data",
+        "tags": [
+          "Map"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/map/create": {
+      "post": {
+        "tags": [
+          "Map"
+        ],
+        "description": "Create new coordinates",
+        "parameters": [
+          {
+            "name": "map",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "lat": { "type": "number" },
+                "lng": { "type": "number" },
+                "description": { "type": "string" },
+                "date": { "type": "Date" }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully create new coordinates",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/map/search": {
+      "post": {
+        "tags": [
+          "Map"
+        ],
+        "description": "Create new coordinates",
+        "parameters": [
+          {
+            "name": "map",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "lat": { "type": "number" },
+                "lng": { "type": "number" },
+                "description": { "type": "string" },
+                "date": { "type": "Date" }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully create new coordinates",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/map/delete/all": {
+      "delete": {
+        "summary": "delete all map coordinates",
+        "tags": [
+          "Map"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/map/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of map that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "summary": "get coordinates with id",
+        "tags": [
+          "Map"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete coordinates with id",
+        "tags": [
+          "Map"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update coordinates with id",
+        "tags": [
+          "Map"
+        ],
+        "description": "Update coordinates",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "type": "string",
+            "description": "Update"
+          },
+          {
+            "name": "map",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "lat": { "type": "number" },
+                "lng": { "type": "number" },
+                "description": { "type": "string" },
+                "date": { "type": "Date" }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully update"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Login user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "login",
+            "schema": {
+              "properties": {
+                "email": { "type": "string" },
+                "password": { "type": "string" },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully login",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/auth/registration": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Create new user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "email": { "type": "string" },
+                "password": { "type": "string" },
+                "name": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully create new user",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Map": {
+      "required": [
+        "id",
+        "lat",
+        "lng",
+        "description",
+        "date",
+        "userId"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "lat": {
+          "type": "number"
+        },
+        "lng": {
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "integer"
+        }
+      }
+    },
+    "User": {
+      "required": [
+        "id",
+        "email",
+        "password",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

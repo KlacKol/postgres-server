@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "map",
+    "password": "map",
+    "database": "history-map",
+    "host": "0.0.0.0",
+    "dialect": "postgres",
+    "define": {
+      "timestamps": false
+    }
+  },
+  "test": {
+    "username": "map",
+    "password": "map",
+    "database": "history-map",
+    "host": "postgres",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "map",
+    "password": "map",
+    "database": "history-map",
+    "host": "postgres",
+    "dialect": "postgres"
+  }
+}
