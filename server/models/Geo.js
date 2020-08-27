@@ -2,26 +2,15 @@ import Sequelize from 'sequelize';
 
 import {db} from "../../config/database";
 
-export const MapSchema = db.define('Map', {
+export const MapSchema = db.define('maps', {
     id : {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    lat: {
-        type: Sequelize.FLOAT,
-        validate: {
-            min: -90,
-            max: 90
-        }
-    },
-    lng: {
-        type: Sequelize.FLOAT,
-        validate: {
-            min: -180,
-            max: 180
-        }
+    location: {
+        type: Sequelize.GEOGRAPHY('POINT')
     },
     description: {
         type: Sequelize.STRING,
@@ -35,9 +24,9 @@ export const MapSchema = db.define('Map', {
     userId: {
         type: Sequelize.INTEGER,
         references: {
-            model: 'Users',
+            model: 'users',
             key: 'id'
         },
-        onDelete: 'CASCADE'
+        onDelete: 'cascade'
     }
 })

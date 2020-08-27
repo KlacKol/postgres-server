@@ -2,7 +2,7 @@ import Sequelize from 'sequelize'
 
 import {db} from "../../config/database";
 
-export const UserSchema = db.define('Users', {
+export const UserSchema = db.define('users', {
     id : {
         type: Sequelize.INTEGER,
         primaryKey: true,

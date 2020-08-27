@@ -2,26 +2,15 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Maps', {
+    await queryInterface.createTable('maps', {
       id : {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      lat: {
-        type: Sequelize.FLOAT,
-        validate: {
-          min: -90,
-          max: 90
-        }
-      },
-      lng: {
-        type: Sequelize.FLOAT,
-        validate: {
-          min: -180,
-          max: 180
-        }
+      location: {
+        type: Sequelize.GEOGRAPHY('POINT')
       },
       description: {
         type: Sequelize.STRING,
@@ -35,14 +24,14 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'users',
           key: 'id'
         },
-        onDelete: 'CASCADE'
+        onDelete: 'cascade'
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Maps');
+    await queryInterface.dropTable('maps');
   }
 };
