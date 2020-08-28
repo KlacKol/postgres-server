@@ -10,7 +10,7 @@ module.exports = {
         allowNull: false
       },
       location: {
-        type: Sequelize.GEOGRAPHY('POINT')
+        type: Sequelize.GEOMETRY('POINT', 4326)
       },
       description: {
         type: Sequelize.STRING,
