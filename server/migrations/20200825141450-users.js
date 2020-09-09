@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('users', {
@@ -27,11 +28,14 @@ module.exports = {
           notEmpty: true,
           len: [3, 20]
         }
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
       }
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     return queryInterface.dropDatabase('users')
   }
 };

@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import passport from 'passport';
 
-import {mapGetAll} from "../../services/map.service";
+import {mapGetAll} from "../../../services/map.service";
 
 const router = Router();
 

@@ -1,7 +1,7 @@
 import {Router} from 'express';
 
-import {refreshUserToken} from "../../services/user.service";
-import errorHandler from "../../utils/errorHandler";
+import {refreshUserToken} from "../../../services/user.service";
+import errorHandler from "../../../utils/errorHandler";
 
 const router = Router();
 

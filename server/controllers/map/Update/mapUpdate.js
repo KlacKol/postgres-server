@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {mapUpdate} from "../../services/map.service";
-import {ValidateMap} from "../../middlewares/Validator";
+import {mapUpdate} from "../../../services/map.service";
+import {ValidateMap} from "../../../middlewares/Validator";
 import passport from "passport";
 const router = Router();
 

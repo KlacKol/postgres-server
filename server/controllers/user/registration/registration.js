@@ -1,8 +1,8 @@
 import {Router} from 'express';
 
-import {addUser} from "../../services/user.service";
-import {ValidateUser} from "../../middlewares/Validator";
-import errorHandler from "../../utils/errorHandler";
+import {addUser} from "../../../services/user.service";
+import {ValidateUser} from "../../../middlewares/Validator";
+import errorHandler from "../../../utils/errorHandler";
 
 const router = Router();
 

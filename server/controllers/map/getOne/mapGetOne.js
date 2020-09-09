@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {mapGetOne} from "../../services/map.service";
+import {mapGetOne} from "../../../services/map.service";
 import passport from "passport";
 const router = Router();
 

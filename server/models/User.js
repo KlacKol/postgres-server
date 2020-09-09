@@ -28,5 +28,8 @@ export const UserSchema = db.define('users', {
             notEmpty: true,
             len: [3, 20]
         }
+    },
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
     }
 })

@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {mapDelete} from "../../services/map.service";
-import errorHandler from "../../utils/errorHandler";
+import {mapDelete} from "../../../services/map.service";
+import errorHandler from "../../../utils/errorHandler";
 import passport from "passport";
 const router = Router();
 
