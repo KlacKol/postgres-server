@@ -1,6 +1,6 @@
 import {Router} from 'express';
 
-import {addUser} from "../../../services/user.service";
+import {addUser} from "../../../services/auth.service";
 import {ValidateUser} from "../../../middlewares/Validator";
 import errorHandler from "../../../utils/errorHandler";
 

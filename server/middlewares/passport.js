@@ -1,5 +1,5 @@
 import config from "config";
-import {getUserById} from "../services/user.service";
+import {getUserById} from "../services/auth.service";
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 

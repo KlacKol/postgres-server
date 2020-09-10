@@ -4,5 +4,7 @@
   "refreshKey": "history-map-refresh",
   "expiresInToken": 900,
   "expiresInRefreshToken": 604800,
-  "host": "0.0.0.0"
+  "host": "0.0.0.0",
+  "DEV_DATABASE": "history-map",
+  "TEST_DATABASE": "test-history-map"
 }

@@ -1,7 +1,7 @@
 import {Router} from 'express';
 
 import errorHandler from "../../../utils/errorHandler";
-import {deleteRefToken} from "../../../services/user.service";
+import {deleteRefToken} from "../../../services/auth.service";
 
 const router = Router();
 
