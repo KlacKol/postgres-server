@@ -41,6 +41,7 @@ export const refreshUserToken = async ({refreshToken}) => {
 
 
 export const addUser = async (data, res) => {
+
     const userExist = await UserSchema.findOne({
         raw: true,
         where: {
@@ -93,7 +94,7 @@ const helperForLogin = (data, res) => {
     }
 };
 
-const tokenFormation = (userId, name) => {
+export const tokenFormation = (userId, name) => {
     return jwt.sign({
         userId,
         name,
@@ -101,7 +102,7 @@ const tokenFormation = (userId, name) => {
     }, tokenKey, {expiresIn: expiresInToken});
 };
 
-const refreshTokenFormation = (userId, name) => {
+export const refreshTokenFormation = (userId, name) => {
     return jwt.sign({
         userId,
         name,

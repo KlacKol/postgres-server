@@ -36,6 +36,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropDatabase('users')
+    return queryInterface.dropTable('users')
   }
 };

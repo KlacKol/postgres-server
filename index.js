@@ -4,19 +4,21 @@ import bodyParser from 'body-parser';
 import passport from 'passport';
 import redis from 'redis';
 import config from 'config';
+import cors from 'cors';
 
 import swaggerDocument from './swagger';
 import useControllers from './server/routes';
-import cors from 'cors';
 import {db} from "./config/database";
 
 const PORT = config.get('port') || 5000;
 const HOST = config.get('host') || '0.0.0.0';
 const app = express();
 
+const redisHost = process.env.NODE_ENV ? '0.0.0.0' : 'redis';
+
 export const clientRedis = redis.createClient({
     port: 6379,
-    host: 'redis'
+    host: redisHost
 });
 
 
@@ -29,9 +31,9 @@ useControllers(app);
 async function start() {
     try {
         clientRedis.on("connect", () => {
-            console.error('Redis client success connected');
+            console.log('Redis client success connected');
         });
-        clientRedis.on("error", function(error) {
+        clientRedis.on("error", (error) => {
             console.error(error);
         });
         db.authenticate()
