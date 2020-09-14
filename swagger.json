@@ -216,7 +216,7 @@
     "/auth/login": {
       "post": {
         "tags": [
-          "User"
+          "Auth"
         ],
         "description": "Login user",
         "parameters": [
@@ -251,7 +251,7 @@
     "/auth/registration": {
       "post": {
         "tags": [
-          "User"
+          "Auth"
         ],
         "description": "Create new user",
         "parameters": [
@@ -274,6 +274,53 @@
         "responses": {
           "200": {
             "description": "Successfully create new user",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "get all users",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully get all users",
+            "schema": {
+              "$ref": "#/definitions/Geo"
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/{email}": {
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "email of user that we want to delete",
+            "type": "string"
+          }
+        ],
+        "description": "delete user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully delete user",
             "schema": {
               "$ref": "#/definitions/Geo"
             }
