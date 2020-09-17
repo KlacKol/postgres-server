@@ -5,6 +5,7 @@ import passport from 'passport';
 import redis from 'redis';
 import config from 'config';
 import cors from 'cors';
+import socket from 'socket.io';
 
 import swaggerDocument from './swagger';
 import useControllers from './server/routes';
@@ -21,28 +22,29 @@ export const clientRedis = redis.createClient({
     host: redisHost
 });
 
-
 app.use(passport.initialize());
 require('./server/middlewares/passport')(passport);
 app.use(bodyParser({extended: true}));
 app.use(cors());
 useControllers(app);
 
+const server = app.listen(PORT, HOST,() => {
+    console.log('START ' + HOST + ':' + PORT)
+})
+export const io = socket(server);
+
 async function start() {
     try {
-        clientRedis.on("connect", () => {
+        await clientRedis.on("connect", () => {
             console.log('Redis client success connected');
         });
-        clientRedis.on("error", (error) => {
+        await clientRedis.on("error", (error) => {
             console.error(error);
         });
-        db.authenticate()
+        await db.authenticate()
             .then(() => 'connected')
             .catch(e=> console.log(e));
         app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-        app.listen(PORT, HOST,() => {
-            console.log('START ' + HOST + ':' + PORT)
-        })
     } catch (e) {
         console.log('Server error',  e.message);
         process.exit(1);

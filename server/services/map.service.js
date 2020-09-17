@@ -31,6 +31,7 @@ export const mapFakeDataGenerate = async () => {
 };
 
 export const mapGetFilterDate = async (data) => {
+    console.log('mapGetFilterDate')
     const a = data.topRight.lat + ' ' + data.topRight.lng;
     const b = data.bottomLeft.lat + ' ' + data.topRight.lng;
     const c = data.bottomLeft.lat + ' ' + data.bottomLeft.lng;
@@ -38,7 +39,9 @@ export const mapGetFilterDate = async (data) => {
     const e = data.topRight.lat + ' ' + data.topRight.lng;
     const polygon = Sequelize.fn('ST_GeomFromText', 'POLYGON((' + a + ',' + b + ',' + c + ',' + d + ',' + e + '))', 4326);
     const allCoords = await MapSchema.findAll({
-        where: Sequelize.fn('ST_Intersects', polygon, Sequelize.col('location'))
+        where: Sequelize.fn('ST_Intersects', polygon, Sequelize.col('location')),
+        limit: 10,
+        offset: 0
     });
     const success = [];
     allCoords.forEach(item => {
