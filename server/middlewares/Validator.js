@@ -59,6 +59,7 @@ export const ValidateUser = ({body}, res, next) => {
         email: Joi.string().trim().pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).required(),
         password: Joi.string().trim().min(3).max(20).required(),
         name: Joi.string().trim().min(3).max(20).required(),
+        isAdmin: Joi.boolean()
     });
 
     const _validationOptions = {

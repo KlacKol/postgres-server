@@ -31,6 +31,9 @@ module.exports = {
       },
       isAdmin: {
         type: Sequelize.BOOLEAN,
+      },
+      avatar: {
+        type: Sequelize.STRING,
       }
     })
   },

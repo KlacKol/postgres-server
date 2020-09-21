@@ -31,5 +31,8 @@ export const UserSchema = db.define('users', {
     },
     isAdmin: {
         type: Sequelize.BOOLEAN,
+    },
+    avatar: {
+        type: Sequelize.STRING,
     }
 })

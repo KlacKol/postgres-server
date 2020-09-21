@@ -26,6 +26,7 @@ app.use(passport.initialize());
 require('./server/middlewares/passport')(passport);
 app.use(bodyParser({extended: true}));
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 useControllers(app);
 
 const server = app.listen(PORT, HOST,() => {

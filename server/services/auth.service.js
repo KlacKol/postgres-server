@@ -40,25 +40,25 @@ export const refreshUserToken = async ({refreshToken}) => {
 };
 
 
-export const addUser = async (data, res) => {
-
+export const addUser = async ({body, file}, res) => {
+    console.log(body)
     const userExist = await UserSchema.findOne({
         raw: true,
         where: {
-            email: data.email
+            email: body.email
         }
     });
     if (userExist) {
         return res.status(409).json({message: 'user exist with this email'})
     }
     const salt = bcrypt.genSaltSync(10);
-    data.password = bcrypt.hashSync(data.password, salt);
-    const dbR = await UserSchema.create(data);
+    body.password = bcrypt.hashSync(body.password, salt);
+    const dbR = await UserSchema.create({...body, avatar: file.filename});
     const candidate = dbR.get();
     const token = tokenFormation(candidate.id, candidate.name);
     const refreshToken = refreshTokenFormation(candidate.id, candidate.name);
     await saveToRedisRfToken(refreshToken, candidate.id);
-    return {token, refreshToken, userId: candidate.id, isAdmin: candidate.isAdmin};
+    return {token, refreshToken, userId: candidate.id, isAdmin: candidate.isAdmin, avatar: candidate.avatar};
 };
 
 export const loginUser = async (data, res) => {
@@ -75,7 +75,7 @@ export const loginUser = async (data, res) => {
         const refreshToken = refreshTokenFormation(candidate.id, candidate.name);
         if (passwordResult) {
             await saveToRedisRfToken(refreshToken, candidate.id);
-            return {token, refreshToken, userId: candidate.id, isAdmin: candidate.isAdmin}
+            return {token, refreshToken, userId: candidate.id, isAdmin: candidate.isAdmin, avatar: candidate.avatar}
         } else {
             return res.status(401).json({message: `wrong password or ${param}`})
         }
