@@ -6,8 +6,20 @@ export const mapGetAll = async () => {
     return MapSchema.findAll();
 };
 
-export const mapGetOne = async (id) => {
-    return MapSchema.findByPk(id);
+export const mapGetMarkersById = async (id) => {
+    const allCoords = await MapSchema.findAll({
+        where: {
+            userId: id
+        }
+    });
+    allCoords.forEach(item => {
+        const lat = item.location.coordinates[0];
+        const lon = item.location.coordinates[1];
+        item.lat = lat;
+        item.lng = lon;
+        delete item.location;
+    });
+    return allCoords;
 };
 
 export const mapAdd = async (data) => {

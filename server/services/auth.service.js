@@ -40,8 +40,7 @@ export const refreshUserToken = async ({refreshToken}) => {
 };
 
 
-export const addUser = async ({body, file}, res) => {
-    console.log(body)
+export const addUser = async ({body, file = {filename: 'default.png'}}, res) => {
     const userExist = await UserSchema.findOne({
         raw: true,
         where: {

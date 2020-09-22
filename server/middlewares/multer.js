@@ -5,7 +5,6 @@ export const MulterOptions = {
         fileSize: 10000000000000,
     },
     fileFilter: (req, file, cb) => {
-        console.log(file, 'multer');
         if (file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
             cb(null, true);
         } else {
@@ -14,10 +13,9 @@ export const MulterOptions = {
     },
     storage: diskStorage({
         destination(req, file, cb) {
-            cb(null, '/uploads');
+            cb(null, 'uploads/');
         },
         filename(req, file, cb) {
-            console.log(file);
             const timestamp = new Date().getTime().toString();
             cb(null, `${timestamp}.png`);
         },

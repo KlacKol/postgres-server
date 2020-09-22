@@ -2,15 +2,15 @@ import {UserSchema} from "../models/User";
 
 export const userGetAll = async () => {
     return UserSchema.findAll({
-        attributes: ['email', 'name', 'isAdmin']
+        attributes: ['email', 'name', 'isAdmin', 'id', 'avatar']
     });
 };
 
-export const userDeleteOne = async (email) => {
-    console.log(email)
+export const userDeleteOne = async (id) => {
+    console.log(id)
     return UserSchema.destroy({
         where: {
-            email
+            id
         }
     });
 };

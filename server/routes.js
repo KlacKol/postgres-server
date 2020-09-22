@@ -1,5 +1,5 @@
 import mapGetAll from './controllers/map/getAll/mapGetAll';
-import mapGetOne from './controllers/map/getOne/mapGetOne';
+import mapGetMarkersById from './controllers/map/getMarkersById/mapGetMarkersById';
 import mapUpdate from './controllers/map/Update/mapUpdate';
 import mapPost from './controllers/map/addMarker/mapPost';
 import mapDeleteOne from './controllers/map/deleteOne/mapDeleteOne';
@@ -16,7 +16,7 @@ import removeUser from  './controllers/user/removeUser/removeUser';
 const connect = (app) => {
     app.use('/map', [
         mapGetAll,
-        mapGetOne,
+        mapGetMarkersById,
         mapUpdate,
         mapPost,
         mapDeleteOne,
